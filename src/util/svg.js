@@ -19,9 +19,7 @@ export function resolveUrl(url) {
   const ua = window.navigator.userAgent;
   const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
   const isIos = /iPhone|iPod|iPad/i.test(ua);
-  // Sniff protocol string to check if iro.js is running in an Ionic webview
-  const isIonic = /ionic/i.test(location.protocol);
-  return ((isSafari || isIos) && (!isIonic)) ? `${location.protocol}//${location.host}${location.pathname}${location.search}${url}` : url;
+  return (isSafari || isIos) ? `//${location.host}${location.pathname}${location.search}${url}` : url;
 }
 
 /**
